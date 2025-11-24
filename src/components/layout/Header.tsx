@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -20,17 +20,30 @@ export const Header = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [mobileMenuOpen]);
 
   const toggleMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
   return (
-    <header
+    <header 
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-lg py-4"
+        scrolled && !mobileMenuOpen
+          ? "bg-background/80 backdrop-blur-lg py-4 shadow-sm"
           : "bg-transparent py-6"
       }`}
     >
@@ -66,31 +79,42 @@ export const Header = () => {
           type="button"
           className="md:hidden text-foreground z-50 relative"
           onClick={toggleMenu}
+          aria-label="Toggle menu"
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
         {/* Mobile Nav Overlay */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="fixed inset-0 bg-background flex flex-col items-center justify-center z-40"
-          >
-            <nav className="flex flex-col gap-8 text-center">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={toggleMenu}
-                  className="text-4xl font-bold font-heading text-foreground hover:text-accent transition-colors tracking-tight"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </nav>
-          </motion.div>
-        )}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, x: "100%" }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed inset-0 bg-background flex flex-col items-center justify-center z-40 h-screen w-screen"
+            >
+              <nav className="flex flex-col gap-8 text-center">
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + i * 0.1 }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={toggleMenu}
+                      className="text-4xl font-bold font-heading text-foreground hover:text-accent transition-colors tracking-tight"
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );
