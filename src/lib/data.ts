@@ -1,11 +1,11 @@
 export const personalInfo = {
   name: "Reihan Mudajanto",
   title: "Full-Stack Engineer & Data Strategist",
-  headline: "Building Robust Systems & Empowering Future Innovators.",
+  headline: "Full-Stack Engineer & Data Automation Specialist",
   subtext:
     "I am a rising Computer Science freshman and Applications Developer. I specialize in engineering scalable backend solutions, automating data pipelines, and teaching the next generation of developers.",
   about:
-    "My journey in tech is driven by intellectual curiosity and a results-oriented mindset. From architecting automated ETL pipelines that improve efficiency by 25% to managing five-figure budgets for competitive robotics teams, I thrive in environments that demand both technical rigor and collaborative leadership. Currently, I’m bridging the gap between complex data and user experience at Global Aerospace while pursuing my CS degree.",
+    "My journey in tech is driven by my deep curiosity and a results-oriented mindset. From architecting automated ETL pipelines that improve efficiency by 25% to managing five-figure budgets for competitive robotics teams, I thrive in environments that demand both technical rigor and collaborative leadership. Currently, I’m looking for new opportunities and working on scalable and new projects while pursuing my CS degree.",
   email: "reihan2007@gmail.com",
   linkedin: "https://www.linkedin.com/in/reihan-mudajanto-b989362b2/",
   github: "https://github.com/ReihanMudd",
@@ -18,7 +18,7 @@ export const experience = [
     role: "Applications Dev. Intern",
     company: "Global Aerospace Inc.",
     location: "Morris Plains, NJ",
-    period: "March 2024 - June 2025",
+    period: "June 2024 - March 2025",
     description: [
       "Engineered and enhanced front-end components for customer-facing broker portals using modern web technologies.",
       "Developed and deployed a back-end rating engine to automate insurance policy calculations, streamlining contract generation.",
