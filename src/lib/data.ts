@@ -42,7 +42,7 @@ export const experience = [
   {
     id: 3,
     role: "Treasurer",
-    company: "FIRST Team",
+    company: "FIRST Team 8588",
     location: "Denville, NJ",
     period: "September 2021 - May 2024",
     description: [
@@ -60,7 +60,7 @@ export const projects = [
     title: "Enterprise Rating Engine",
     tech: ["Java/C#", "Backend", "SQL"],
     description:
-      "Developed and deployed a backend rating engine to automate insurance policy calculations, eliminating manual data entry and streamlining contract generation.",
+      "Iterated on and deployed a backend rating engine to automate insurance policy calculations, eliminating manual data entry and streamlining contract generation.",
     company: "Global Aerospace Inc.",
   },
   {
@@ -78,6 +78,22 @@ export const projects = [
     description:
       "Designed and delivered a 10-week foundational coding curriculum for 15+ students, resulting in a 100% capstone project completion rate.",
     company: "Parsippany Library",
+  },
+  {
+    id: 4,
+    title: "FRC Charged Up Robot",
+    tech: ["Java", "Robotics", "Electronics"],
+    description:
+      "Designed and built a robot for the FRC Charged Up game, featuring a 4-wheel drive system and a multi-motor shooter.",
+    company: "FIRST Team 8588",
+  },
+  {
+    id: 5,
+    title: "Portfolio Website",
+    tech: ["Next.js", "Tailwind CSS", "React"],
+    description:
+      "Designed and built a portfolio website to showcase my projects, skills, and experience.",
+    company: "Personal",
   },
 ];
 
